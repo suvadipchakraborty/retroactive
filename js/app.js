@@ -10,33 +10,57 @@
   const MONTH_NAMES = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 
   // ---------- Category classification ----------
-  // Order matters: first matching group wins.
+  // Precision over recall: every pattern below is a specific term, proper
+  // noun, or multi-word phrase. Earlier versions used bare dictionary words
+  // (e.g. "television", "founded", "scientist", "discovers", "engineer",
+  // "circuit", "nuclear") which matched constantly in ordinary biographies
+  // and history ("known for his television career", "founded a charity",
+  // "political scientist", "circuit court") and dragged in unrelated
+  // entries. Every rule here is deliberately narrow; a date with few real
+  // tech stories should show few cards, backed by the general-history
+  // filler in pickDisplaySet(), rather than stretch to fill a quota.
+
+  // Recognizable tech/computing/aerospace company and org names. Proper
+  // nouns are low-risk: they rarely appear by coincidence in unrelated text.
+  const TECH_ORG_RE = /\b(Apple(?: Inc| Computer)?|Microsoft|Google|Alphabet Inc|Amazon\.com|Meta Platforms|Facebook|Instagram|WhatsApp|Twitter|\bX Corp\b|IBM|Intel\b|NVIDIA|AMD\b|Qualcomm|Samsung|Sony(?! Pictures| Music)|Nintendo|Sega|Atari|Commodore|Motorola|Nokia|BlackBerry|Xerox|Bell Labs|Texas Instruments|Hewlett-Packard|\bHP\b|Dell\b|Oracle Corporation|Adobe\b|Netflix|Yahoo!?|eBay|PayPal|Uber\b|Airbnb|SpaceX|Tesla,? Inc|Boeing|Lockheed Martin|\bNASA\b|ARPANET|\bCERN\b|Bitcoin|Ethereum|Wikipedia|Reddit|LinkedIn|TikTok|ByteDance|Napster|MySpace)\b/;
+
+  // Specific technical concepts and events, expressed as compound phrases
+  // rather than single words, so they don't fire on unrelated usage.
+  const TECH_CONCEPT_RE = /\b(microcomputer|supercomputer|mainframe computer|computer software|computer hardware|microchip|semiconductor chip|integrated circuit|microprocessor|transistor radio|first transistor|programming language|source code|computer algorithm|operating system|world wide web|web browser|domain name registered|internet service provider|dial-up internet|broadband internet|smartphone|mobile phone (is unveiled|is launched|is patented)|video game|game console|arcade game|virtual reality|augmented reality|artificial intelligence|machine learning|autonomous robot|industrial robot|robotics|drone aircraft|unmanned aerial vehicle|3D printer|data encryption|cryptocurrency|blockchain|satellite (is launched|goes into orbit|enters orbit)|space(craft|ship|walk)|space station|space shuttle|rocket (is launched|launch)|orbits? (the )?(Earth|Moon|Sun|Mars)|astronaut|cosmonaut|Nobel Prize in Physics|Turing Award|Apollo \d+|Mars rover|telescope is launched|telegraph line|radio transmission|first radio broadcast|television (is invented|technology|broadcast begins)|cathode ray tube|nuclear reactor|nuclear power plant|laser (beam|technology|is invented)|fiber-optic|search engine|social media platform)\b/i;
+
+  // Job titles/roles that are specifically technical (kept narrow: bare
+  // "engineer" or "scientist" would match almost any biography).
+  const TECH_ROLE_RE = /\b(computer scientist|software engineer|computer engineer|electrical engineer|aerospace engineer|robotics engineer|systems architect|network engineer|programmer|coder|roboticist|computing pioneer|internet pioneer|video game designer|tech entrepreneur|astronaut|cosmonaut)\b/i;
+
+  // Tech-specific business events, as phrases (bare "founded" or
+  // "corporation" match nearly any historical organization).
+  const TECH_BUSINESS_RE = /\b(startup founded|tech company founded|co-founded (Apple|Microsoft|Google|Amazon|Facebook|IBM)|initial public offering|\bIPO\b|acquires .*(startup|tech company|software company)|acquired by (Google|Apple|Microsoft|Amazon|Meta|Facebook|IBM)|unveils its (first|new) (computer|smartphone|phone|software|console|product)|launches its (first|new) (computer|smartphone|phone|software|console|product))\b/i;
+
   const CATEGORY_RULES = [
-    { name: "Computing", re: /\bcomputer|software|hardware|processor|microchip|semiconductor|programming|algorithm|operating system|IBM\b|Microsoft|Apple (Inc|Computer)|mainframe|supercomputer|CPU\b/i },
-    { name: "Internet & web", re: /\binternet|world wide web|website|web browser|domain name|\.com\b|email|HTML|HTTP|Google|Facebook|Twitter|social media|search engine/i },
-    { name: "Space & science", re: /\bNASA|satellite|rocket|spacecraft|astronaut|orbit|space station|telescope|Apollo \d|SpaceX|Soyuz|Mars rover|physics|discovers?/i },
-    { name: "Gaming", re: /\bvideo game|game console|Nintendo|Atari|PlayStation|Xbox|arcade|Sega/i },
-    { name: "Companies & business", re: /\bfounded|corporation|patent|IPO|acquires?|acquisition|launches its|Tesla|IBM founded|startup|Sony|Samsung/i },
+    { name: "Gaming", re: /\bvideo game|game console|arcade game|Nintendo|Atari|PlayStation|Xbox|Sega|Commodore 64/i },
+    { name: "Computing", re: /\bcomputer\b|microcomputer|supercomputer|mainframe|microchip|semiconductor|integrated circuit|microprocessor|programming language|operating system|\bIBM\b|Microsoft|Apple (Inc|Computer)|Commodore|\bCPU\b/i },
+    { name: "Internet & web", re: /\binternet|world wide web|website|web browser|domain name|\.com\b|email|\bHTML\b|\bHTTP\b|Google|Facebook|Twitter|Instagram|TikTok|social media platform|search engine|Wikipedia|Reddit/i },
+    { name: "Space & science", re: /\bNASA\b|satellite|rocket|spacecraft|astronaut|cosmonaut|\borbits?\b.*(Earth|Moon|Sun|Mars)|space station|space shuttle|telescope|Apollo \d|SpaceX|Soyuz|Mars rover|Nobel Prize in Physics/i },
+    { name: "Companies & business", re: TECH_BUSINESS_RE },
   ];
-
-  const TECH_KEYWORD_RE = /\b(computer|software|hardware|internet|website|web browser|programming|algorithm|processor|microchip|semiconductor|satellite|spacecraft|NASA|astronaut|rocket|orbit|video game|console|robot|robotics|artificial intelligence|\bAI\b|patent|invents?|invention|telegraph|radio broadcast|television|transistor|silicon|IBM|Microsoft|Apple (Inc|Computer)|Google|Facebook|Twitter|smartphone|mobile phone|operating system|database|encryption|cryptograph|electronics|circuit|engineer(ing)?|scientist|physicist|Nobel Prize in Physics|domain name|email|browser|Tesla|SpaceX|drone|3D print|nuclear|laser)/i;
-
-  const PEOPLE_KEYWORD_RE = /computer scientist|programmer|software engineer|computing pioneer|roboticist|technologist|systems architect|network engineer|electrical engineer|aerospace engineer|astronaut|video game designer|tech entrepreneur|internet pioneer/i;
 
   function classify(item) {
     const haystack = `${item.text} ${item.pageTitles}`;
     for (const rule of CATEGORY_RULES) {
       if (rule.re.test(haystack)) return rule.name;
     }
-    if (item.type !== "event" && PEOPLE_KEYWORD_RE.test(haystack)) return "People";
+    if (item.type !== "event" && TECH_ROLE_RE.test(haystack)) return "People";
     return "Tech history";
   }
 
   function isTechRelevant(item) {
     const haystack = `${item.text} ${item.pageTitles}`;
-    if (TECH_KEYWORD_RE.test(haystack)) return true;
-    if (item.type !== "event" && PEOPLE_KEYWORD_RE.test(haystack)) return true;
-    return false;
+    return (
+      TECH_ORG_RE.test(haystack) ||
+      TECH_CONCEPT_RE.test(haystack) ||
+      TECH_BUSINESS_RE.test(haystack) ||
+      (item.type !== "event" && TECH_ROLE_RE.test(haystack))
+    );
   }
 
   // ---------- State ----------
