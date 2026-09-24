@@ -1,0 +1,39 @@
+{
+  "id": "./",
+  "name": "Retroactive — Tech History, One Day at a Time",
+  "short_name": "Retroactive",
+  "description": "Every day's tech history, pulled fresh from Wikipedia.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display_override": ["standalone"],
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EDE3C7",
+  "theme_color": "#EDE3C7",
+  "icons": [
+    {
+      "src": "./assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#EDE3C7"/>
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#DDCE9F"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <circle cx="1100" cy="70" r="30" fill="#A23B2A"/>
+
+  <text x="90" y="120" font-family="'Special Elite','Courier New',monospace" font-size="52" fill="#2B2318">Retroactive</text>
+  <text x="90" y="160" font-family="'Space Mono','Courier New',monospace" font-size="22" fill="#6B5D46">Tech history, one day at a time</text>
+
+  <!-- Split-flap date board mock -->
+  <g transform="translate(90,230)">
+    <rect x="0" y="0" width="92" height="120" rx="10" fill="#FBF5E7" stroke="#E4D6AE" stroke-width="4"/>
+    <text x="46" y="86" font-family="'Special Elite','Courier New',monospace" font-size="66" fill="#2B2318" text-anchor="middle">S</text>
+    <rect x="102" y="0" width="92" height="120" rx="10" fill="#FBF5E7" stroke="#E4D6AE" stroke-width="4"/>
+    <text x="148" y="86" font-family="'Special Elite','Courier New',monospace" font-size="66" fill="#2B2318" text-anchor="middle">E</text>
+    <rect x="204" y="0" width="92" height="120" rx="10" fill="#FBF5E7" stroke="#E4D6AE" stroke-width="4"/>
+    <text x="250" y="86" font-family="'Special Elite','Courier New',monospace" font-size="66" fill="#2B2318" text-anchor="middle">P</text>
+    <rect x="330" y="0" width="92" height="120" rx="10" fill="#FBF5E7" stroke="#E4D6AE" stroke-width="4"/>
+    <text x="376" y="86" font-family="'Special Elite','Courier New',monospace" font-size="66" fill="#2B2318" text-anchor="middle">2</text>
+    <rect x="432" y="0" width="92" height="120" rx="10" fill="#FBF5E7" stroke="#E4D6AE" stroke-width="4"/>
+    <text x="478" y="86" font-family="'Special Elite','Courier New',monospace" font-size="66" fill="#2B2318" text-anchor="middle">4</text>
+  </g>
+
+  <text x="90" y="430" font-family="'Source Serif 4', Georgia, serif" font-size="30" font-weight="600" fill="#2B2318">Every day's tech history, filed fresh from Wikipedia.</text>
+  <text x="90" y="470" font-family="'Source Serif 4', Georgia, serif" font-size="22" fill="#6B5D46">Browse any date · file your favorites · flip to terminal mode</text>
+
+  <rect x="90" y="520" width="230" height="46" rx="23" fill="none" stroke="#2E6B5E" stroke-width="3"/>
+  <text x="205" y="549" font-family="'Space Mono','Courier New',monospace" font-size="20" fill="#2E6B5E" text-anchor="middle">Computing</text>
+
+  <rect x="336" y="520" width="230" height="46" rx="23" fill="none" stroke="#2E6B5E" stroke-width="3"/>
+  <text x="451" y="549" font-family="'Space Mono','Courier New',monospace" font-size="20" fill="#2E6B5E" text-anchor="middle">Space &amp; science</text>
+</svg>

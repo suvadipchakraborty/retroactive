@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#241E17"/>
+  <circle cx="422" cy="94" r="26" fill="#A23B2A"/>
+  <rect x="96" y="146" width="320" height="220" rx="14" fill="#FBF5E7" stroke="#E4D6AE" stroke-width="6"/>
+  <rect x="96" y="146" width="320" height="220" rx="14" fill="none" stroke="#2B2318" stroke-width="0"/>
+  <line x1="96" y1="256" x2="416" y2="256" stroke="#E4D6AE" stroke-width="4"/>
+  <text x="256" y="248" font-family="'Special Elite','Courier New',monospace" font-size="150" fill="#2B2318" text-anchor="middle">R</text>
+  <text x="256" y="410" font-family="'Space Mono','Courier New',monospace" font-size="34" fill="#DDCE9F" text-anchor="middle" letter-spacing="4">ON THIS DAY</text>
+</svg>
