@@ -154,8 +154,8 @@
       }
     } catch {}
 
-    const url = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/events/${String(month).padStart(2,"0")}/${String(day).padStart(2,"0")}`;
-    const res = await fetch(url, { headers: { "Api-User-Agent": "Retroactive/1.0" } });
+    const url = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/all/${String(month).padStart(2,"0")}/${String(day).padStart(2,"0")}`;
+    const res = await fetch(url, { headers: { "Api-User-Agent": "Retroactive/1.0 (suvadipchakraborty@gmail.com)" } });
     if (!res.ok) throw new Error(`Wikipedia API returned ${res.status}`);
     const data = await res.json();
 
@@ -403,7 +403,7 @@
 
   // ---------- Terminal mode ----------
   function applyMode(mode) {
-    document.body.classList.toggle("terminal", mode === "terminal");
+    document.documentElement.classList.toggle("terminal", mode === "terminal");
     el.modeToggle.setAttribute("aria-label", mode === "terminal" ? "Switch to paper mode" : "Switch to terminal mode");
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", mode === "terminal" ? "#060A07" : "#EDE3C7");
@@ -449,7 +449,14 @@
   el.todayBtn.addEventListener("click", goToday);
   el.randomBtn.addEventListener("click", goRandom);
   el.datePicker.addEventListener("change", (e) => {
-    const [, m, d] = e.target.value.split("-").map(Number);
+    const parts = e.target.value.split("-").map(Number);
+    const [, m, d] = parts;
+    const valid = parts.length === 3 && !parts.some(Number.isNaN) && m >= 1 && m <= 12 && d >= 1 && d <= 31;
+    if (!valid) {
+      showToast("Couldn't read that date — showing today instead");
+      goToday();
+      return;
+    }
     loadDate(m, d);
   });
   el.modeToggle.addEventListener("click", toggleMode);

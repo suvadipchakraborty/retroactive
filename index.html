@@ -6,6 +6,19 @@
 <title>Retroactive — Tech History, One Day at a Time</title>
 <meta name="description" content="Every day's tech history, pulled fresh from Wikipedia. Browse any date, file the stories you like, and flip the terminal switch for a CRT-green archive.">
 <meta name="theme-color" content="#EDE3C7">
+<script>
+  // Applied before first paint so terminal-mode users don't see a flash
+  // of the default paper theme while app.js loads.
+  (function () {
+    try {
+      if (localStorage.getItem("retro:mode") === "terminal") {
+        document.documentElement.classList.add("terminal");
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", "#060A07");
+      }
+    } catch (e) {}
+  })();
+</script>
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">

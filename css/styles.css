@@ -20,7 +20,7 @@
   color-scheme: light;
 }
 
-body.terminal{
+html.terminal{
   --bg: #060A07;
   --bg-dot: #0D160E;
   --card: #0A1710;
@@ -60,11 +60,11 @@ body{
   transition:background-color .3s ease, color .3s ease;
 }
 
-body.terminal{
+html.terminal{
   font-size:19px;
 }
 
-body.terminal::after{
+html.terminal::after{
   content:"";
   position:fixed;
   inset:0;
@@ -129,7 +129,7 @@ a{ color:inherit; }
   color:var(--ink-soft);
 }
 
-body.terminal .masthead__tagline{ font-family:var(--font-display); font-size:15px; }
+html.terminal .masthead__tagline{ font-family:var(--font-display); font-size:15px; }
 
 .masthead__buttons{ display:flex; gap:8px; flex-shrink:0; }
 
@@ -189,7 +189,7 @@ body.terminal .masthead__tagline{ font-family:var(--font-display); font-size:15p
 
 .flap-char.is-flipping{ transform:rotateX(78deg); }
 
-body.terminal .flap-char{ font-size:28px; }
+html.terminal .flap-char{ font-size:28px; }
 
 /* ---------- Controls ---------- */
 
@@ -211,7 +211,7 @@ body.terminal .flap-char{ font-size:28px; }
   font-family:var(--font-mono);
   font-size:12.5px;
 }
-body.terminal .ctrl-chip{ font-family:var(--font-display); font-size:15px; }
+html.terminal .ctrl-chip{ font-family:var(--font-display); font-size:15px; }
 
 .ctrl-chip:active{ background:var(--wire-soft); }
 
@@ -245,14 +245,14 @@ body.terminal .ctrl-chip{ font-family:var(--font-display); font-size:15px; }
   font-size:12px;
   white-space:nowrap;
 }
-body.terminal .tag-chip{ font-family:var(--font-display); font-size:15px; }
+html.terminal .tag-chip{ font-family:var(--font-display); font-size:15px; }
 
 .tag-chip.is-active{
   background:var(--wire);
   border-color:var(--wire);
   color:var(--card);
 }
-body.terminal .tag-chip.is-active{ color:#03150A; }
+html.terminal .tag-chip.is-active{ color:#03150A; }
 
 /* ---------- Ledger / cards ---------- */
 
@@ -271,7 +271,7 @@ body.terminal .tag-chip.is-active{ color:#03150A; }
   text-align:center;
   padding:30px 10px;
 }
-body.terminal .ledger__status{ font-family:var(--font-display); font-size:17px; }
+html.terminal .ledger__status{ font-family:var(--font-display); font-size:17px; }
 
 .ledger__retry{
   display:block;
@@ -332,7 +332,7 @@ body.terminal .ledger__status{ font-family:var(--font-display); font-size:17px; 
   margin-top:6px;
   line-height:1.3;
 }
-body.terminal .card__yearsago{ font-family:var(--font-display); font-size:13px; }
+html.terminal .card__yearsago{ font-family:var(--font-display); font-size:13px; }
 
 .card__body{ flex:1; min-width:0; }
 
@@ -352,14 +352,14 @@ body.terminal .card__yearsago{ font-family:var(--font-display); font-size:13px; 
   border-radius:999px;
   padding:2px 8px;
 }
-body.terminal .card__tag{ font-family:var(--font-display); font-size:13px; }
+html.terminal .card__tag{ font-family:var(--font-display); font-size:13px; }
 
 .card__kind{
   font-family:var(--font-mono);
   font-size:10.5px;
   color:var(--ink-faint);
 }
-body.terminal .card__kind{ font-family:var(--font-display); font-size:13px; }
+html.terminal .card__kind{ font-family:var(--font-display); font-size:13px; }
 
 .card__headline{
   font-family:var(--font-body);
@@ -369,7 +369,7 @@ body.terminal .card__kind{ font-family:var(--font-display); font-size:13px; }
   margin:0 0 6px;
   color:var(--ink);
 }
-body.terminal .card__headline{ font-size:20px; font-weight:400; }
+html.terminal .card__headline{ font-size:20px; font-weight:400; }
 
 .card__extract{
   font-family:var(--font-body);
@@ -378,7 +378,7 @@ body.terminal .card__headline{ font-size:20px; font-weight:400; }
   color:var(--ink-soft);
   margin:0 0 10px;
 }
-body.terminal .card__extract{ font-size:17px; }
+html.terminal .card__extract{ font-size:17px; }
 
 .card__footer{
   display:flex;
@@ -396,7 +396,7 @@ body.terminal .card__extract{ font-size:17px; }
   font-size:12.5px;
   padding:4px 0;
 }
-body.terminal .card__file-btn{ font-family:var(--font-display); font-size:15px; }
+html.terminal .card__file-btn{ font-family:var(--font-display); font-size:15px; }
 .card__file-btn.is-filed{ color:var(--stamp); }
 
 .card__link{
@@ -406,7 +406,7 @@ body.terminal .card__file-btn{ font-family:var(--font-display); font-size:15px; 
   text-decoration:none;
   border-bottom:1px solid var(--wire);
 }
-body.terminal .card__link{ font-family:var(--font-display); font-size:15px; }
+html.terminal .card__link{ font-family:var(--font-display); font-size:15px; }
 
 /* ---------- Bottom bar ---------- */
 
@@ -432,14 +432,14 @@ body.terminal .card__link{ font-family:var(--font-display); font-size:15px; }
   font-family:var(--font-display);
   font-size:15px;
 }
-body.terminal .bottom-bar__mark{ background:var(--ink); color:var(--bg); }
+html.terminal .bottom-bar__mark{ background:var(--ink); color:var(--bg); }
 
 .bottom-bar__counter{
   font-family:var(--font-mono);
   font-size:12px;
   color:var(--ink-soft);
 }
-body.terminal .bottom-bar__counter{ font-family:var(--font-display); font-size:15px; }
+html.terminal .bottom-bar__counter{ font-family:var(--font-display); font-size:15px; }
 
 .bottom-bar__actions{ display:flex; gap:6px; }
 
@@ -519,7 +519,7 @@ body.terminal .bottom-bar__counter{ font-family:var(--font-display); font-size:1
   text-align:center;
   margin-top:4px;
 }
-body.terminal .modal-sheet__tagline{ font-family:var(--font-display); font-size:15px; }
+html.terminal .modal-sheet__tagline{ font-family:var(--font-display); font-size:15px; }
 
 .modal-sheet__mission{
   font-family:var(--font-body);
@@ -528,7 +528,7 @@ body.terminal .modal-sheet__tagline{ font-family:var(--font-display); font-size:
   color:var(--ink);
   margin:14px 0;
 }
-body.terminal .modal-sheet__mission{ font-size:17px; }
+html.terminal .modal-sheet__mission{ font-size:17px; }
 
 .modal-sheet__badge{
   display:block;
@@ -538,7 +538,7 @@ body.terminal .modal-sheet__mission{ font-size:17px; }
   color:var(--ink-faint);
   margin-bottom:10px;
 }
-body.terminal .modal-sheet__badge{ font-family:var(--font-display); font-size:15px; }
+html.terminal .modal-sheet__badge{ font-family:var(--font-display); font-size:15px; }
 
 .modal-sheet__section{
   border-top:1px solid var(--rule);
@@ -559,7 +559,7 @@ body.terminal .modal-sheet__badge{ font-family:var(--font-display); font-size:15
   font-size:13.5px;
   text-decoration:none;
 }
-body.terminal .modal-sheet__row-btn{ font-family:var(--font-display); font-size:16px; }
+html.terminal .modal-sheet__row-btn{ font-family:var(--font-display); font-size:16px; }
 .modal-sheet__row-btn.is-danger{ color:var(--stamp); }
 .modal-sheet__row-arrow{ color:var(--ink-faint); }
 
@@ -569,7 +569,7 @@ body.terminal .modal-sheet__row-btn{ font-family:var(--font-display); font-size:
   color:var(--ink-faint);
   line-height:1.5;
 }
-body.terminal .kbd-hint{ font-family:var(--font-display); font-size:14px; }
+html.terminal .kbd-hint{ font-family:var(--font-display); font-size:14px; }
 
 @media (min-width:600px){
   .masthead__mark{ font-size:32px; }
